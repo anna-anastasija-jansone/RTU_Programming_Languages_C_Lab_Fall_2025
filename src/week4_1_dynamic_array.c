@@ -1,7 +1,7 @@
 /*
  * week4_1_dynamic_array.c
- * Author: [Your Name]
- * Student ID: [Your ID]
+ * Author: Anna Anaastasija Jansone
+ * Student ID: 241ADC002
  * Description:
  *   Demonstrates creation and usage of a dynamic array using malloc.
  *   Students should allocate memory for an integer array, fill it with data,
@@ -22,17 +22,30 @@ int main(void) {
     }
 
     // TODO: Allocate memory for n integers using malloc
-    // Example: arr = malloc(n * sizeof(int));
+    arr = malloc(n * sizeof(int));
+    if (arr == NULL)
+    {
+        printf("memory allocation failed");
+        return 1;
+    }
+    for(int i = 0; i < n; ++i)
+    {
+        printf("Enter number %d, please\n", i + 1);
+        int num;
+        scanf("%d", &num);
+        arr[i] = num;
+    }
 
-    // TODO: Check allocation success
+    int sum = 0;
+    double average = 0;
+    for(int i = 0; i < n; ++i)
+    {
+        sum += arr[i];
+    }
+    average = (double)sum/(double)n;
+    printf("sum: %1d, average: %2f\n", sum, average);
 
-    // TODO: Read n integers from user input and store in array
-
-    // TODO: Compute sum and average
-
-    // TODO: Print the results
-
-    // TODO: Free allocated memory
+    free(arr);
 
     return 0;
 }
