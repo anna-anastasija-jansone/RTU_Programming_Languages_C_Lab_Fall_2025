@@ -1,6 +1,6 @@
 /*
  * Lab 3, Task 2
- * Student Name, Student ID
+ * Anna Anaastasija Jansone 241ADC002
  *
  * Practice using pointers as function parameters.
  * Implement:
