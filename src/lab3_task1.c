@@ -22,6 +22,7 @@
  */
 
 #include <stdio.h>
+#include <limits.h>
 
 // Function prototypes
 int array_min(int arr[], int size);
