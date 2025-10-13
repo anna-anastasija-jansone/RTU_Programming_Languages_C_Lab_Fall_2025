@@ -15,7 +15,6 @@ typedef struct {
     float gpa;
 } Student;
 
-// Function prototypes
 void save_student(Student s, const char *filename);
 Student load_student(const char *filename);
 
@@ -27,23 +26,43 @@ int main(void) {
 
     const char *filename = "student.txt";
 
-    // TODO: Call save_student() to save student data to file
-    // TODO: Call load_student() to read data back into a new struct
-    // TODO: Print loaded data to confirm correctness
+    printf("Saving student to file...\n");
+    save_student(s1, filename);
+
+    printf("Loading studdent from flie...\n");
+    Student loaded = load_student(filename);
+
+    printf("Loaded student: %s, %d, GPA %.2f\n", loaded.name, loaded.age, loaded.gpa);
 
     return 0;
 }
 
-// TODO: Implement save_student()
-// Open file for writing, check errors, write fields, then close file
 void save_student(Student s, const char *filename) {
-    // ...
+    FILE *fp = fopen(filename, "w");
+    if (fp == NULL) {
+        perror("Error opening file for writing");
+        exit(EXIT_FAILURE);
+    }
+
+    fprintf(fp, "%s %d %.2f\n", s.name, s.age, s.gpa);
+
+    fclose(fp);
 }
 
-// TODO: Implement load_student()
-// Open file for reading, check errors, read fields, then close file
 Student load_student(const char *filename) {
     Student s;
-    // ...
+    FILE *fp = fopen(filename, "r");
+    if (fp == NULL) {
+        perror("Error opening file for reading");
+        exit(EXIT_FAILURE);
+    }
+
+    if (fscanf(fp, "%49s %d %f", s.name, &s.age, &s.gpa) != 3) {
+        fprintf(stderr, "Error: Invalid file format.\n");
+        fclose(fp);
+        exit(EXIT_FAILURE);
+    }
+
+    fclose(fp);
     return s;
 }
